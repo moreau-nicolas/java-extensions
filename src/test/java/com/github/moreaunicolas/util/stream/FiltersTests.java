@@ -3,12 +3,14 @@ package com.github.moreaunicolas.util.stream;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import static com.github.moreaunicolas.util.stream.Filters.*;
+import static java.util.Comparator.naturalOrder;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FiltersTests {
@@ -80,5 +82,27 @@ public class FiltersTests {
         assertThat(findAnyEqualToZ.in(LETTERS)).isEmpty();
         assertThat(findAnyEqualToZ.in(Stream.of(LETTERS))).isEmpty();
         assertThat(findAnyEqualToZ.in(Arrays.asList(LETTERS))).isEmpty();
+    }
+
+    @Test
+    public void minReturnsMinimumElement() {
+        Comparator<String> order = naturalOrder();
+
+        SearchFunction<String, Optional<String>> min = min(order);
+
+        assertThat(min.in(LETTERS)).contains("a");
+        assertThat(min.in(Stream.of(LETTERS))).contains("a");
+        assertThat(min.in(Arrays.asList(LETTERS))).contains("a");
+    }
+
+    @Test
+    public void maxReturnsMaximumElement() {
+        Comparator<String> order = naturalOrder();
+
+        SearchFunction<String, Optional<String>> max = max(order);
+
+        assertThat(max.in(LETTERS)).contains("e");
+        assertThat(max.in(Stream.of(LETTERS))).contains("e");
+        assertThat(max.in(Arrays.asList(LETTERS))).contains("e");
     }
 }

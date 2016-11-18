@@ -1,5 +1,6 @@
 package com.github.moreaunicolas.util.stream;
 
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -31,6 +32,14 @@ public final class Filters {
 
     public static <T> SearchFunction<T, Optional<T>> findAny(Predicate<? super T> predicate) {
         return stream -> stream.filter(predicate).findAny();
+    }
+
+    public static <T> SearchFunction<T, Optional<T>> min(Comparator<? super T> predicate) {
+        return stream -> stream.min(predicate);
+    }
+
+    public static <T> SearchFunction<T, Optional<T>> max(Comparator<? super T> predicate) {
+        return stream -> stream.max(predicate);
     }
 
     private Filters() {
