@@ -33,6 +33,7 @@ public class ExtendedCollectorsTests {
 
     @Test
     public void toMap_withoutArgument_withDuplicates() {
+        @SuppressWarnings("ResultOfMethodCallIgnored") // collector will throw
         final Throwable caughtThrowable = catchThrowable(() -> {
             Stream.of(ENTRY_2, ENTRY_2_DUPLICATE)
                     .collect(ExtendedCollectors.toMap());
@@ -57,6 +58,7 @@ public class ExtendedCollectorsTests {
 
     @Test
     public void toMap_withSupplier_withDuplicates() {
+        @SuppressWarnings("ResultOfMethodCallIgnored") // collector will throw
         final Throwable caughtThrowable = catchThrowable(() -> {
             Stream.of(ENTRY_2, ENTRY_2_DUPLICATE)
                     .collect(ExtendedCollectors.toMap(TreeMap::new));
@@ -106,6 +108,7 @@ public class ExtendedCollectorsTests {
 
     @Test
     public void toConcurrentMap_withoutArgument_withDuplicates() {
+        @SuppressWarnings("ResultOfMethodCallIgnored") // collector will throw
         final Throwable caughtThrowable = catchThrowable(() -> {
             Stream.of(ENTRY_2, ENTRY_2_DUPLICATE)
                     .collect(ExtendedCollectors.toConcurrentMap());
@@ -130,6 +133,7 @@ public class ExtendedCollectorsTests {
 
     @Test
     public void toConcurrentMap_withSupplier_withDuplicates() {
+        @SuppressWarnings("ResultOfMethodCallIgnored") // collector will throw
         final Throwable caughtThrowable = catchThrowable(() -> {
             Stream.of(ENTRY_2, ENTRY_2_DUPLICATE)
                     .collect(ExtendedCollectors.toConcurrentMap(ConcurrentSkipListMap::new));
