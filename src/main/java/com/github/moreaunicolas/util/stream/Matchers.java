@@ -1,5 +1,6 @@
 package com.github.moreaunicolas.util.stream;
 
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -22,6 +23,10 @@ public final class Matchers {
 
         default boolean in(Iterator<T> iterator) {
             return in(stream(iterator));
+        }
+
+        default boolean in(Enumeration<T> enumeration) {
+            return in(stream(enumeration));
         }
     }
 
