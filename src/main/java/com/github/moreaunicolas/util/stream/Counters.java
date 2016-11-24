@@ -2,6 +2,7 @@ package com.github.moreaunicolas.util.stream;
 
 import static com.github.moreaunicolas.util.stream.ExtendedStreamSupport.stream;
 
+import java.util.Iterator;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -17,6 +18,10 @@ public final class Counters {
 
         default long in(T[] objects) {
             return in(Stream.of(objects));
+        }
+
+        default long in(Iterator<T> iterator) {
+            return in(stream(iterator));
         }
     }
 

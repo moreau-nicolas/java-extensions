@@ -1,5 +1,6 @@
 package com.github.moreaunicolas.util.stream;
 
+import com.google.common.collect.Iterators;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -27,6 +28,7 @@ public class FiltersTests {
         assertThat(findAllVowels.in(LETTERS)).contains("a", "e");
         assertThat(findAllVowels.in(Stream.of(LETTERS))).contains("a", "e");
         assertThat(findAllVowels.in(Arrays.asList(LETTERS))).contains("a", "e");
+        assertThat(findAllVowels.in(Iterators.forArray(LETTERS))).contains("a", "e");
     }
 
     @Test
@@ -38,6 +40,7 @@ public class FiltersTests {
         assertThat(findAllEqualToZ.in(LETTERS)).isEmpty();
         assertThat(findAllEqualToZ.in(Stream.of(LETTERS))).isEmpty();
         assertThat(findAllEqualToZ.in(Arrays.asList(LETTERS))).isEmpty();
+        assertThat(findAllEqualToZ.in(Iterators.forArray(LETTERS))).isEmpty();
     }
 
     @Test
@@ -49,6 +52,7 @@ public class FiltersTests {
         assertThat(findFirstVowel.in(LETTERS)).contains("a");
         assertThat(findFirstVowel.in(Stream.of(LETTERS))).contains("a");
         assertThat(findFirstVowel.in(Arrays.asList(LETTERS))).contains("a");
+        assertThat(findFirstVowel.in(Iterators.forArray(LETTERS))).contains("a");
     }
 
     @Test
@@ -60,9 +64,11 @@ public class FiltersTests {
         assertThat(findFirstEqualToZ.in(LETTERS)).isEmpty();
         assertThat(findFirstEqualToZ.in(Stream.of(LETTERS))).isEmpty();
         assertThat(findFirstEqualToZ.in(Arrays.asList(LETTERS))).isEmpty();
+        assertThat(findFirstEqualToZ.in(Iterators.forArray(LETTERS))).isEmpty();
     }
 
     @Test
+    @SuppressWarnings("OptionalGetWithoutIsPresent") // get() will not fail
     public void findAnyReturnsAnySatisfyingElement() {
         Predicate<String> isVowel = VOWELS::contains;
 
@@ -71,6 +77,7 @@ public class FiltersTests {
         assertThat(findAnyVowel.in(LETTERS).get()).isIn("a", "e");
         assertThat(findAnyVowel.in(Stream.of(LETTERS)).get()).isIn("a", "e");
         assertThat(findAnyVowel.in(Arrays.asList(LETTERS)).get()).isIn("a", "e");
+        assertThat(findAnyVowel.in(Iterators.forArray(LETTERS)).get()).isIn("a", "e");
     }
 
     @Test
@@ -82,6 +89,7 @@ public class FiltersTests {
         assertThat(findAnyEqualToZ.in(LETTERS)).isEmpty();
         assertThat(findAnyEqualToZ.in(Stream.of(LETTERS))).isEmpty();
         assertThat(findAnyEqualToZ.in(Arrays.asList(LETTERS))).isEmpty();
+        assertThat(findAnyEqualToZ.in(Iterators.forArray(LETTERS))).isEmpty();
     }
 
     @Test
@@ -93,6 +101,7 @@ public class FiltersTests {
         assertThat(min.in(LETTERS)).contains("a");
         assertThat(min.in(Stream.of(LETTERS))).contains("a");
         assertThat(min.in(Arrays.asList(LETTERS))).contains("a");
+        assertThat(min.in(Iterators.forArray(LETTERS))).contains("a");
     }
 
     @Test
@@ -104,5 +113,6 @@ public class FiltersTests {
         assertThat(max.in(LETTERS)).contains("e");
         assertThat(max.in(Stream.of(LETTERS))).contains("e");
         assertThat(max.in(Arrays.asList(LETTERS))).contains("e");
+        assertThat(max.in(Iterators.forArray(LETTERS))).contains("e");
     }
 }

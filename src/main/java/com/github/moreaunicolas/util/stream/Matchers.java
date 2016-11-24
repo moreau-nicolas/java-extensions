@@ -1,5 +1,6 @@
 package com.github.moreaunicolas.util.stream;
 
+import java.util.Iterator;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -17,6 +18,10 @@ public final class Matchers {
 
         default boolean in(T[] objects) {
             return in(Stream.of(objects));
+        }
+
+        default boolean in(Iterator<T> iterator) {
+            return in(stream(iterator));
         }
     }
 

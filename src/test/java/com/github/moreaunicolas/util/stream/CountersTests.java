@@ -1,6 +1,7 @@
 package com.github.moreaunicolas.util.stream;
 
 import com.github.moreaunicolas.util.stream.Counters.CountFunction;
+import com.google.common.collect.Iterators;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -25,6 +26,7 @@ public class CountersTests {
         assertThat(countVowels.in(LETTERS)).isEqualTo(2);
         assertThat(countVowels.in(Stream.of(LETTERS))).isEqualTo(2);
         assertThat(countVowels.in(Arrays.asList(LETTERS))).isEqualTo(2);
+        assertThat(countVowels.in(Iterators.forArray(LETTERS))).isEqualTo(2);
     }
 
     @Test
@@ -36,5 +38,6 @@ public class CountersTests {
         assertThat(countZs.in(LETTERS)).isEqualTo(0);
         assertThat(countZs.in(Stream.of(LETTERS))).isEqualTo(0);
         assertThat(countZs.in(Arrays.asList(LETTERS))).isEqualTo(0);
+        assertThat(countZs.in(Iterators.forArray(LETTERS))).isEqualTo(0);
     }
 }

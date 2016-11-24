@@ -1,6 +1,7 @@
 package com.github.moreaunicolas.util.stream;
 
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -19,6 +20,10 @@ public final class Filters {
 
         default R in(T[] objects) {
             return in(Stream.of(objects));
+        }
+
+        default R in(Iterator<T> iterator) {
+            return in(stream(iterator));
         }
     }
 

@@ -1,16 +1,15 @@
 package com.github.moreaunicolas.util.stream;
 
-import static com.github.moreaunicolas.util.stream.Matchers.allMatch;
-import static com.github.moreaunicolas.util.stream.Matchers.anyMatch;
-import static com.github.moreaunicolas.util.stream.Matchers.noneMatch;
-import static org.assertj.core.api.Assertions.assertThat;
+import com.github.moreaunicolas.util.stream.Matchers.*;
+import com.google.common.collect.Iterators;
+import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import com.github.moreaunicolas.util.stream.Matchers.MatchFunction;
-import org.junit.Test;
+import static com.github.moreaunicolas.util.stream.Matchers.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class MatchersTests {
 
@@ -25,6 +24,7 @@ public class MatchersTests {
         assertThat(allMatchSingleLetter.in(LETTERS)).isTrue();
         assertThat(allMatchSingleLetter.in(Stream.of(LETTERS))).isTrue();
         assertThat(allMatchSingleLetter.in(Arrays.asList(LETTERS))).isTrue();
+        assertThat(allMatchSingleLetter.in(Iterators.forArray(LETTERS))).isTrue();
     }
 
     @Test
@@ -36,6 +36,7 @@ public class MatchersTests {
         assertThat(allMatchEqualToB.in(LETTERS)).isFalse();
         assertThat(allMatchEqualToB.in(Stream.of(LETTERS))).isFalse();
         assertThat(allMatchEqualToB.in(Arrays.asList(LETTERS))).isFalse();
+        assertThat(allMatchEqualToB.in(Iterators.forArray(LETTERS))).isFalse();
     }
 
     @Test
@@ -47,6 +48,7 @@ public class MatchersTests {
         assertThat(anyMatchEqualToC.in(LETTERS)).isTrue();
         assertThat(anyMatchEqualToC.in(Stream.of(LETTERS))).isTrue();
         assertThat(anyMatchEqualToC.in(Arrays.asList(LETTERS))).isTrue();
+        assertThat(anyMatchEqualToC.in(Iterators.forArray(LETTERS))).isTrue();
     }
 
     @Test
@@ -58,6 +60,7 @@ public class MatchersTests {
         assertThat(anyMatchEqualToZ.in(LETTERS)).isFalse();
         assertThat(anyMatchEqualToZ.in(Stream.of(LETTERS))).isFalse();
         assertThat(anyMatchEqualToZ.in(Arrays.asList(LETTERS))).isFalse();
+        assertThat(anyMatchEqualToZ.in(Iterators.forArray(LETTERS))).isFalse();
     }
 
     @Test
@@ -69,6 +72,7 @@ public class MatchersTests {
         assertThat(noneMatchEqualToZ.in(LETTERS)).isTrue();
         assertThat(noneMatchEqualToZ.in(Stream.of(LETTERS))).isTrue();
         assertThat(noneMatchEqualToZ.in(Arrays.asList(LETTERS))).isTrue();
+        assertThat(noneMatchEqualToZ.in(Iterators.forArray(LETTERS))).isTrue();
     }
 
     @Test
@@ -80,5 +84,6 @@ public class MatchersTests {
         assertThat(noneMatchEqualToB.in(LETTERS)).isFalse();
         assertThat(noneMatchEqualToB.in(Stream.of(LETTERS))).isFalse();
         assertThat(noneMatchEqualToB.in(Arrays.asList(LETTERS))).isFalse();
+        assertThat(noneMatchEqualToB.in(Iterators.forArray(LETTERS))).isFalse();
     }
 }
