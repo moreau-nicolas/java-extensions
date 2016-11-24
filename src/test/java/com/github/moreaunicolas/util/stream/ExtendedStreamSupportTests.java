@@ -1,8 +1,11 @@
 package com.github.moreaunicolas.util.stream;
 
+import com.github.moreaunicolas.util.IteratorAsEnumeration;
+import com.google.common.collect.Iterators;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.stream.Stream;
 
@@ -40,6 +43,24 @@ public class ExtendedStreamSupportTests {
     @Test
     public void wrappingAnIteratorReturnsANonParallelStream() {
         Iterator<String> letters = Arrays.asList("a", "b", "c").iterator();
+
+        Stream<String> result = ExtendedStreamSupport.stream(letters);
+
+        assertThat(result.isParallel()).isFalse();
+    }
+
+    @Test
+    public void wrappingAnEnumerationReturnsTheSameElementsInOrder() {
+        Enumeration<String> letters = new IteratorAsEnumeration<>(Iterators.forArray("a", "b", "c"));
+
+        Stream<String> result = ExtendedStreamSupport.stream(letters);
+
+        assertThat(result).containsExactly("a", "b", "c");
+    }
+
+    @Test
+    public void wrappingAnEnumerationReturnsANonParallelStream() {
+        Enumeration<String> letters = new IteratorAsEnumeration<>(Iterators.forArray("a", "b", "c"));
 
         Stream<String> result = ExtendedStreamSupport.stream(letters);
 
