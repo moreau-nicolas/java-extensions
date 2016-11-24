@@ -15,21 +15,25 @@ public final class ExtendedPredicates {
     }
 
     @SafeVarargs
+    @SuppressWarnings("OptionalGetWithoutIsPresent") // there are at least two predicates
     public static <T> Predicate<T> or(Predicate<T> first, Predicate<T> second, Predicate<T>... rest) {
         return stream(first, second, rest).reduce(Predicate::or).get();
     }
 
     @SafeVarargs
+    @SuppressWarnings("OptionalGetWithoutIsPresent") // there are at least two predicates
     public static <T, U> BiPredicate<T, U> or(BiPredicate<T, U> first, BiPredicate<T, U> second, BiPredicate<T, U>... rest) {
         return stream(first, second, rest).reduce(BiPredicate::or).get();
     }
 
     @SafeVarargs
+    @SuppressWarnings("OptionalGetWithoutIsPresent") // there are at least two predicates
     public static <T> Predicate<T> and(Predicate<T> first, Predicate<T> second, Predicate<T>... rest) {
         return stream(first, second, rest).reduce(Predicate::and).get();
     }
 
     @SafeVarargs
+    @SuppressWarnings("OptionalGetWithoutIsPresent") // there are at least two predicates
     public static <T, U> BiPredicate<T, U> and(BiPredicate<T, U> first, BiPredicate<T, U> second, BiPredicate<T, U>... rest) {
         return stream(first, second, rest).reduce(BiPredicate::and).get();
     }
