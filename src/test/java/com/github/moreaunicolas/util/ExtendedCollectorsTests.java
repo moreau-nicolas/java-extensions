@@ -34,7 +34,7 @@ public class ExtendedCollectorsTests {
     @Test
     public void toMap_withoutArgument_withDuplicates() {
         @SuppressWarnings("ResultOfMethodCallIgnored") // collector will throw
-        final Throwable caughtThrowable = catchThrowable(() -> {
+        Throwable caughtThrowable = catchThrowable(() -> {
             Stream.of(ENTRY_2, ENTRY_2_DUPLICATE)
                     .collect(ExtendedCollectors.toMap());
         });
@@ -59,7 +59,7 @@ public class ExtendedCollectorsTests {
     @Test
     public void toMap_withSupplier_withDuplicates() {
         @SuppressWarnings("ResultOfMethodCallIgnored") // collector will throw
-        final Throwable caughtThrowable = catchThrowable(() -> {
+        Throwable caughtThrowable = catchThrowable(() -> {
             Stream.of(ENTRY_2, ENTRY_2_DUPLICATE)
                     .collect(ExtendedCollectors.toMap(TreeMap::new));
         });
@@ -72,7 +72,7 @@ public class ExtendedCollectorsTests {
 
     @Test
     public void toMap_withMergeFunction() {
-        final BinaryOperator<String> useFirstValue = (oldest, newest) -> oldest;
+        BinaryOperator<String> useFirstValue = (oldest, newest) -> oldest;
 
         actual = Stream.of(ENTRY_2, ENTRY_2_DUPLICATE)
                 .collect(ExtendedCollectors.toMap(useFirstValue));
@@ -84,7 +84,7 @@ public class ExtendedCollectorsTests {
 
     @Test
     public void toMap_withMergeFunctionAndSupplier() {
-        final BinaryOperator<String> useFirstValue = (oldest, newest) -> oldest;
+        BinaryOperator<String> useFirstValue = (oldest, newest) -> oldest;
 
         actual = Stream.of(ENTRY_2, ENTRY_2_DUPLICATE)
                 .collect(ExtendedCollectors.toMap(useFirstValue, TreeMap::new));
@@ -109,7 +109,7 @@ public class ExtendedCollectorsTests {
     @Test
     public void toConcurrentMap_withoutArgument_withDuplicates() {
         @SuppressWarnings("ResultOfMethodCallIgnored") // collector will throw
-        final Throwable caughtThrowable = catchThrowable(() -> {
+        Throwable caughtThrowable = catchThrowable(() -> {
             Stream.of(ENTRY_2, ENTRY_2_DUPLICATE)
                     .collect(ExtendedCollectors.toConcurrentMap());
         });
@@ -134,7 +134,7 @@ public class ExtendedCollectorsTests {
     @Test
     public void toConcurrentMap_withSupplier_withDuplicates() {
         @SuppressWarnings("ResultOfMethodCallIgnored") // collector will throw
-        final Throwable caughtThrowable = catchThrowable(() -> {
+        Throwable caughtThrowable = catchThrowable(() -> {
             Stream.of(ENTRY_2, ENTRY_2_DUPLICATE)
                     .collect(ExtendedCollectors.toConcurrentMap(ConcurrentSkipListMap::new));
         });
@@ -147,7 +147,7 @@ public class ExtendedCollectorsTests {
 
     @Test
     public void toConcurrentMap_withMergeFunction() {
-        final BinaryOperator<String> useLastValue = (oldest, newest) -> newest;
+        BinaryOperator<String> useLastValue = (oldest, newest) -> newest;
 
         actual = Stream.of(ENTRY_2, ENTRY_2_DUPLICATE)
                 .collect(ExtendedCollectors.toConcurrentMap(useLastValue));
@@ -160,7 +160,7 @@ public class ExtendedCollectorsTests {
 
     @Test
     public void toConcurrentMap_withMergeFunctionAndSupplier() {
-        final BinaryOperator<String> useLastValue = (oldest, newest) -> newest;
+        BinaryOperator<String> useLastValue = (oldest, newest) -> newest;
 
         actual = Stream.of(ENTRY_2, ENTRY_2_DUPLICATE)
                 .collect(ExtendedCollectors.toConcurrentMap(useLastValue, ConcurrentSkipListMap::new));

@@ -17,11 +17,11 @@ import org.junit.Test;
 public class ExtendedPredicatesTests {
 
     @Rule
-    public JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
 
     @Test
     public void notNegatesItsArgument_Predicate() {
-        final Predicate<Boolean> not = ExtendedPredicates.not(b -> b);
+         Predicate<Boolean> not = ExtendedPredicates.not(b -> b);
 
         softly.assertThat(not.test(TRUE)).isFalse();
         softly.assertThat(not.test(FALSE)).isTrue();
@@ -29,7 +29,7 @@ public class ExtendedPredicatesTests {
 
     @Test
     public void notNegatesItsArgument_BiPredicate() {
-        final BiPredicate<Boolean, Boolean> nand = ExtendedPredicates.not(Boolean::logicalAnd);
+        BiPredicate<Boolean, Boolean> nand = ExtendedPredicates.not(Boolean::logicalAnd);
 
         softly.assertThat(nand.test(TRUE, TRUE)).isFalse();
         softly.assertThat(nand.test(TRUE, FALSE)).isTrue();
@@ -39,7 +39,7 @@ public class ExtendedPredicatesTests {
 
     @Test
     public void orCombinesItsArguments_Predicate() {
-        final Predicate<String> predicate = ExtendedPredicates.or(
+        Predicate<String> predicate = ExtendedPredicates.or(
                 s -> s.startsWith("4"),
                 s -> s.contains("3"),
                 s -> s.endsWith("2")
@@ -54,8 +54,8 @@ public class ExtendedPredicatesTests {
 
     @Test
     public void orShortCircuits_Predicate() {
-        final Predicate<?> shouldNeverBeCalled = mock(Predicate.class);
-        final Predicate<?> predicate = ExtendedPredicates.or(
+        Predicate<?> shouldNeverBeCalled = mock(Predicate.class);
+        Predicate<?> predicate = ExtendedPredicates.or(
                 s -> false,
                 s -> true,
                 shouldNeverBeCalled
@@ -68,7 +68,7 @@ public class ExtendedPredicatesTests {
 
     @Test
     public void andCombinesItsArguments_Predicate() {
-        final Predicate<String> predicate = ExtendedPredicates.and(
+        Predicate<String> predicate = ExtendedPredicates.and(
                 s -> s.startsWith("4"),
                 s -> s.contains("3"),
                 s -> s.endsWith("2")
@@ -83,8 +83,8 @@ public class ExtendedPredicatesTests {
 
     @Test
     public void andShortCircuits_Predicate() {
-        final Predicate<?> shouldNeverBeCalled = mock(Predicate.class);
-        final Predicate<?> predicate = ExtendedPredicates.and(
+        Predicate<?> shouldNeverBeCalled = mock(Predicate.class);
+        Predicate<?> predicate = ExtendedPredicates.and(
                 s -> true,
                 s -> false,
                 shouldNeverBeCalled
@@ -97,7 +97,7 @@ public class ExtendedPredicatesTests {
 
     @Test
     public void xorCombinesItsArguments_Predicate() {
-        final Predicate<String> predicate = ExtendedPredicates.xor(
+        Predicate<String> predicate = ExtendedPredicates.xor(
                 s -> s.startsWith("4"),
                 s -> s.endsWith("2")
         );
@@ -112,12 +112,12 @@ public class ExtendedPredicatesTests {
     @Test
     public void xorEvaluatesAllItsArguments_Predicate() {
         @SuppressWarnings("unchecked")
-        final Predicate<String> first = mock(Predicate.class);
+        Predicate<String> first = mock(Predicate.class);
         @SuppressWarnings("unchecked")
-        final Predicate<String> second = mock(Predicate.class);
+        Predicate<String> second = mock(Predicate.class);
         @SuppressWarnings("unchecked")
-        final Predicate<String> third = mock(Predicate.class);
-        final Predicate<String> predicate = ExtendedPredicates.xor(
+        Predicate<String> third = mock(Predicate.class);
+        Predicate<String> predicate = ExtendedPredicates.xor(
                 first,
                 second,
                 third
@@ -132,7 +132,7 @@ public class ExtendedPredicatesTests {
 
     @Test
     public void orCombinesItsArguments_BiPredicate() {
-        final BiPredicate<String, Integer> predicate = ExtendedPredicates.or(
+        BiPredicate<String, Integer> predicate = ExtendedPredicates.or(
                 (a, b) -> a.startsWith("4"),
                 (a, b) -> a.contains("3"),
                 (a, b) -> a.endsWith("2")
@@ -147,8 +147,8 @@ public class ExtendedPredicatesTests {
 
     @Test
     public void orShortCircuits_BiPredicate() {
-        final BiPredicate<?,?> shouldNeverBeCalled = mock(BiPredicate.class);
-        final BiPredicate<?,?> predicate = ExtendedPredicates.or(
+        BiPredicate<?,?> shouldNeverBeCalled = mock(BiPredicate.class);
+        BiPredicate<?,?> predicate = ExtendedPredicates.or(
                 (a, b) -> false,
                 (a, b) -> true,
                 shouldNeverBeCalled
@@ -161,7 +161,7 @@ public class ExtendedPredicatesTests {
 
     @Test
     public void andCombinesItsArguments_BiPredicate() {
-        final BiPredicate<String, Integer> predicate = ExtendedPredicates.and(
+        BiPredicate<String, Integer> predicate = ExtendedPredicates.and(
                 (a, b) -> a.startsWith("4"),
                 (a, b) -> a.contains("3"),
                 (a, b) -> a.endsWith("2")
@@ -176,8 +176,8 @@ public class ExtendedPredicatesTests {
 
     @Test
     public void andShortCircuits_BiPredicate() {
-        final BiPredicate<?,?> shouldNeverBeCalled = mock(BiPredicate.class);
-        final BiPredicate<?,?> predicate = ExtendedPredicates.and(
+        BiPredicate<?,?> shouldNeverBeCalled = mock(BiPredicate.class);
+        BiPredicate<?,?> predicate = ExtendedPredicates.and(
                 (a, b) -> true,
                 (a, b) -> false,
                 shouldNeverBeCalled
@@ -190,7 +190,7 @@ public class ExtendedPredicatesTests {
 
     @Test
     public void xorCombinesItsArguments_BiPredicate() {
-        final BiPredicate<String, Integer> predicate = ExtendedPredicates.xor(
+        BiPredicate<String, Integer> predicate = ExtendedPredicates.xor(
                 (a, b) -> a.startsWith("4"),
                 (a, b) -> a.endsWith("2")
         );
@@ -205,12 +205,12 @@ public class ExtendedPredicatesTests {
     @Test
     public void xorEvaluatesAllItsArguments_BiPredicate() {
         @SuppressWarnings("unchecked")
-        final BiPredicate<String, Integer> first = mock(BiPredicate.class);
+        BiPredicate<String, Integer> first = mock(BiPredicate.class);
         @SuppressWarnings("unchecked")
-        final BiPredicate<String, Integer> second = mock(BiPredicate.class);
+        BiPredicate<String, Integer> second = mock(BiPredicate.class);
         @SuppressWarnings("unchecked")
-        final BiPredicate<String, Integer> third = mock(BiPredicate.class);
-        final BiPredicate<?,?> predicate = ExtendedPredicates.xor(
+        BiPredicate<String, Integer> third = mock(BiPredicate.class);
+        BiPredicate<?,?> predicate = ExtendedPredicates.xor(
                 first,
                 second,
                 third

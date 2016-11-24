@@ -17,7 +17,7 @@ public class ExtendedArraysTests {
 
     @Test
     public void asSet_singleElement() {
-        final int fortyTwo = 42;
+        int fortyTwo = 42;
 
         Set<Integer> numbers = ExtendedArrays.asSet(fortyTwo);
 
@@ -26,7 +26,7 @@ public class ExtendedArraysTests {
 
     @Test
     public void asSet_duplicates() {
-        final int fortyTwo = 42;
+        int fortyTwo = 42;
 
         Set<Integer> numbers = ExtendedArrays.asSet(fortyTwo, fortyTwo);
 
@@ -35,8 +35,8 @@ public class ExtendedArraysTests {
 
     @Test
     public void asSet_severalElements() {
-        final String holmes = "Sherlock Holmes";
-        final String watson = "John Watson";
+        String holmes = "Sherlock Holmes";
+        String watson = "John Watson";
 
         Set<String> detectives = ExtendedArrays.asSet(holmes, watson);
 
