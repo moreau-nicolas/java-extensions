@@ -34,12 +34,12 @@ public final class Filters {
         return stream -> stream.filter(predicate).findAny();
     }
 
-    public static <T> SearchFunction<T, Optional<T>> min(Comparator<? super T> predicate) {
-        return stream -> stream.min(predicate);
+    public static <T> SearchFunction<T, Optional<T>> min(Comparator<? super T> comparator) {
+        return stream -> stream.min(comparator);
     }
 
-    public static <T> SearchFunction<T, Optional<T>> max(Comparator<? super T> predicate) {
-        return stream -> stream.max(predicate);
+    public static <T> SearchFunction<T, Optional<T>> max(Comparator<? super T> comparator) {
+        return stream -> stream.max(comparator);
     }
 
     private Filters() {
