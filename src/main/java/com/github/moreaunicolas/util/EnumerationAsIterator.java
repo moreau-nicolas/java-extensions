@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 import static java.util.Objects.requireNonNull;
 
-public class EnumerationAsIterator<E> implements Iterator<E> {
+public final class EnumerationAsIterator<E> implements Iterator<E> {
 
     private final Enumeration<E> enumeration;
 
