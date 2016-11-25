@@ -1,5 +1,7 @@
 package com.github.moreaunicolas.util.stream;
 
+import com.github.moreaunicolas.test.UtilityClassAssert;
+import com.github.moreaunicolas.util.ExtendedArrays;
 import com.github.moreaunicolas.util.stream.LongMatchers.*;
 import org.junit.Test;
 
@@ -63,5 +65,11 @@ public class LongMatchersTests {
 
         assertThat(noneMatchMultipleOf4.in(NUMBERS)).isFalse();
         assertThat(noneMatchMultipleOf4.in(LongStream.of(NUMBERS))).isFalse();
+    }
+
+    @Test
+    public void isUtilityClass() throws NoSuchMethodException {
+        UtilityClassAssert.assertThat(LongMatchers.class)
+                .isUtilityClass();
     }
 }

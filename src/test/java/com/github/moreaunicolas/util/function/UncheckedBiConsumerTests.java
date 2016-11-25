@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
+import com.github.moreaunicolas.test.UtilityClassAssert;
 import org.junit.Test;
 
 public class UncheckedBiConsumerTests {
@@ -66,5 +67,11 @@ public class UncheckedBiConsumerTests {
         assertThat(throwable)
                 .isInstanceOf(RuntimeException.class)
                 .hasCause(exception);
+    }
+
+    @Test
+    public void isUtilityClass() throws NoSuchMethodException {
+        UtilityClassAssert.assertThat(UncheckedBiConsumer.class)
+                .isUtilityClass();
     }
 }

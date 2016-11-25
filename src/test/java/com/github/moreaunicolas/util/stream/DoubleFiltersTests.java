@@ -1,5 +1,7 @@
 package com.github.moreaunicolas.util.stream;
 
+import com.github.moreaunicolas.test.UtilityClassAssert;
+import com.github.moreaunicolas.util.ExtendedArrays;
 import com.github.moreaunicolas.util.stream.DoubleFilters.*;
 import org.junit.Test;
 
@@ -78,5 +80,11 @@ public class DoubleFiltersTests {
 
         assertThat(maxDouble().in(NUMBERS)).hasValue(50);
         assertThat(maxDouble().in(DoubleStream.of(NUMBERS))).hasValue(50);
+    }
+
+    @Test
+    public void isUtilityClass() throws NoSuchMethodException {
+        UtilityClassAssert.assertThat(DoubleFilters.class)
+                .isUtilityClass();
     }
 }

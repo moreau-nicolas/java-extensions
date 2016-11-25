@@ -8,6 +8,7 @@ import java.io.UncheckedIOException;
 import java.util.Objects;
 import java.util.function.BiPredicate;
 
+import com.github.moreaunicolas.test.UtilityClassAssert;
 import org.junit.Test;
 
 public class UncheckedBiPredicateTests {
@@ -61,5 +62,11 @@ public class UncheckedBiPredicateTests {
         assertThat(throwable)
                 .isInstanceOf(RuntimeException.class)
                 .hasCause(exception);
+    }
+
+    @Test
+    public void isUtilityClass() throws NoSuchMethodException {
+        UtilityClassAssert.assertThat(UncheckedBiPredicate.class)
+                .isUtilityClass();
     }
 }

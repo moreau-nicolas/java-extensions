@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.function.Function;
 
+import com.github.moreaunicolas.test.UtilityClassAssert;
 import org.junit.Test;
 
 public class UncheckedFunctionTests {
@@ -60,5 +61,11 @@ public class UncheckedFunctionTests {
         assertThat(throwable)
                 .isInstanceOf(RuntimeException.class)
                 .hasCause(exception);
+    }
+
+    @Test
+    public void isUtilityClass() throws NoSuchMethodException {
+        UtilityClassAssert.assertThat(UncheckedFunction.class)
+                .isUtilityClass();
     }
 }

@@ -1,6 +1,8 @@
 package com.github.moreaunicolas.util.stream;
 
 import com.github.moreaunicolas.test.Enumerations;
+import com.github.moreaunicolas.test.UtilityClassAssert;
+import com.github.moreaunicolas.util.ExtendedArrays;
 import com.google.common.collect.Iterators;
 import org.junit.Test;
 
@@ -120,5 +122,11 @@ public class FiltersTests {
         assertThat(max.in(Arrays.asList(LETTERS))).contains("e");
         assertThat(max.in(Iterators.forArray(LETTERS))).contains("e");
         assertThat(max.in(Enumerations.forArray(LETTERS))).contains("e");
+    }
+
+    @Test
+    public void isUtilityClass() throws NoSuchMethodException {
+        UtilityClassAssert.assertThat(Filters.class)
+                .isUtilityClass();
     }
 }

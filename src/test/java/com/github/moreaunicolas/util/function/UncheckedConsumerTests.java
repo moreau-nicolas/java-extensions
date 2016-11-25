@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import com.github.moreaunicolas.test.UtilityClassAssert;
 import org.junit.Test;
 
 public class UncheckedConsumerTests {
@@ -60,5 +61,11 @@ public class UncheckedConsumerTests {
         Throwable throwable = catchThrowable(() -> wrapper.accept(null));
 
         assertThat(throwable).isInstanceOf(RuntimeException.class).hasCause(exception);
+    }
+
+    @Test
+    public void isUtilityClass() throws NoSuchMethodException {
+        UtilityClassAssert.assertThat(UncheckedConsumer.class)
+                .isUtilityClass();
     }
 }

@@ -10,6 +10,7 @@ import static org.mockito.Mockito.verify;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
+import com.github.moreaunicolas.test.UtilityClassAssert;
 import org.assertj.core.api.JUnitSoftAssertions;
 import org.junit.Rule;
 import org.junit.Test;
@@ -221,5 +222,11 @@ public class ExtendedPredicatesTests {
         verify(first).test(eq(null), eq(null));
         verify(second).test(eq(null), eq(null));
         verify(third).test(eq(null), eq(null));
+    }
+
+    @Test
+    public void isUtilityClass() throws NoSuchMethodException {
+        UtilityClassAssert.assertThat(ExtendedPredicates.class)
+                .isUtilityClass();
     }
 }

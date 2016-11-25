@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Set;
 
+import com.github.moreaunicolas.test.UtilityClassAssert;
 import org.junit.Test;
 
 public class ExtendedArraysTests {
@@ -41,5 +42,11 @@ public class ExtendedArraysTests {
         Set<String> detectives = ExtendedArrays.asSet(holmes, watson);
 
         assertThat(detectives).containsOnly(watson, holmes);
+    }
+
+    @Test
+    public void isUtilityClass() throws NoSuchMethodException {
+        UtilityClassAssert.assertThat(ExtendedArrays.class)
+                .isUtilityClass();
     }
 }

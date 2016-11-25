@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import com.github.moreaunicolas.test.UtilityClassAssert;
 import org.junit.Test;
 
 public class UncheckedRunnableTests {
@@ -63,5 +64,11 @@ public class UncheckedRunnableTests {
         assertThat(throwable)
                 .isInstanceOf(RuntimeException.class)
                 .hasCause(exception);
+    }
+
+    @Test
+    public void isUtilityClass() throws NoSuchMethodException {
+        UtilityClassAssert.assertThat(UncheckedRunnable.class)
+                .isUtilityClass();
     }
 }

@@ -1,5 +1,7 @@
 package com.github.moreaunicolas.util.stream;
 
+import com.github.moreaunicolas.test.UtilityClassAssert;
+import com.github.moreaunicolas.util.ExtendedArrays;
 import com.github.moreaunicolas.util.IteratorAsEnumeration;
 import com.google.common.collect.Iterators;
 import org.junit.Test;
@@ -65,5 +67,11 @@ public class ExtendedStreamSupportTests {
         Stream<String> result = ExtendedStreamSupport.stream(letters);
 
         assertThat(result.isParallel()).isFalse();
+    }
+
+    @Test
+    public void isUtilityClass() throws NoSuchMethodException {
+        UtilityClassAssert.assertThat(ExtendedStreamSupport.class)
+                .isUtilityClass();
     }
 }

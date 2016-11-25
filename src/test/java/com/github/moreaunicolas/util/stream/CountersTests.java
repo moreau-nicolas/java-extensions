@@ -1,6 +1,8 @@
 package com.github.moreaunicolas.util.stream;
 
 import com.github.moreaunicolas.test.Enumerations;
+import com.github.moreaunicolas.test.UtilityClassAssert;
+import com.github.moreaunicolas.util.ExtendedArrays;
 import com.github.moreaunicolas.util.stream.Counters.CountFunction;
 import com.google.common.collect.Iterators;
 import org.junit.Test;
@@ -42,5 +44,11 @@ public class CountersTests {
         assertThat(countZs.in(Arrays.asList(LETTERS))).isEqualTo(0);
         assertThat(countZs.in(Iterators.forArray(LETTERS))).isEqualTo(0);
         assertThat(countZs.in(Enumerations.forArray(LETTERS))).isEqualTo(0);
+    }
+
+    @Test
+    public void isUtilityClass() throws NoSuchMethodException {
+        UtilityClassAssert.assertThat(Counters.class)
+                .isUtilityClass();
     }
 }

@@ -1,5 +1,7 @@
 package com.github.moreaunicolas.util.stream;
 
+import com.github.moreaunicolas.test.UtilityClassAssert;
+import com.github.moreaunicolas.util.ExtendedArrays;
 import com.github.moreaunicolas.util.stream.DoubleCounters.DoubleCountFunction;
 import org.junit.Test;
 
@@ -30,5 +32,11 @@ public class DoubleCountersTests {
 
         assertThat(countNegatives.in(NUMBERS)).isEqualTo(0);
         assertThat(countNegatives.in(DoubleStream.of(NUMBERS))).isEqualTo(0);
+    }
+
+    @Test
+    public void isUtilityClass() throws NoSuchMethodException {
+        UtilityClassAssert.assertThat(DoubleCounters.class)
+                .isUtilityClass();
     }
 }

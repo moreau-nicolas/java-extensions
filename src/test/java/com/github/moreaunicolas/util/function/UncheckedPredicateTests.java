@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.function.Predicate;
 
+import com.github.moreaunicolas.test.UtilityClassAssert;
 import org.junit.Test;
 
 public class UncheckedPredicateTests {
@@ -60,5 +61,11 @@ public class UncheckedPredicateTests {
         assertThat(throwable)
                 .isInstanceOf(RuntimeException.class)
                 .hasCause(exception);
+    }
+
+    @Test
+    public void isUtilityClass() throws NoSuchMethodException {
+        UtilityClassAssert.assertThat(UncheckedPredicate.class)
+                .isUtilityClass();
     }
 }

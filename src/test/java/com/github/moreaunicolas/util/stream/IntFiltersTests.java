@@ -1,5 +1,7 @@
 package com.github.moreaunicolas.util.stream;
 
+import com.github.moreaunicolas.test.UtilityClassAssert;
+import com.github.moreaunicolas.util.ExtendedArrays;
 import org.junit.Test;
 
 import java.util.OptionalInt;
@@ -77,5 +79,11 @@ public class IntFiltersTests {
 
         assertThat(maxInt().in(NUMBERS)).hasValue(50);
         assertThat(maxInt().in(IntStream.of(NUMBERS))).hasValue(50);
+    }
+
+    @Test
+    public void isUtilityClass() throws NoSuchMethodException {
+        UtilityClassAssert.assertThat(IntFilters.class)
+                .isUtilityClass();
     }
 }

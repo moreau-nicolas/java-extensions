@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.function.BiFunction;
 
+import com.github.moreaunicolas.test.UtilityClassAssert;
 import org.junit.Test;
 
 public class UncheckedBiFunctionTests {
@@ -56,5 +57,11 @@ public class UncheckedBiFunctionTests {
         Throwable throwable = catchThrowable(() -> wrapper.apply(null, null));
 
         assertThat(throwable).isInstanceOf(RuntimeException.class).hasCause(exception);
+    }
+
+    @Test
+    public void isUtilityClass() throws NoSuchMethodException {
+        UtilityClassAssert.assertThat(UncheckedBiFunction.class)
+                .isUtilityClass();
     }
 }

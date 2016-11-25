@@ -1,5 +1,7 @@
 package com.github.moreaunicolas.util.stream;
 
+import com.github.moreaunicolas.test.UtilityClassAssert;
+import com.github.moreaunicolas.util.ExtendedArrays;
 import com.github.moreaunicolas.util.stream.IntMatchers.*;
 import org.junit.Test;
 
@@ -63,5 +65,11 @@ public class IntMatchersTests {
 
         assertThat(noneMatchMultipleOf4.in(NUMBERS)).isFalse();
         assertThat(noneMatchMultipleOf4.in(IntStream.of(NUMBERS))).isFalse();
+    }
+
+    @Test
+    public void isUtilityClass() throws NoSuchMethodException {
+        UtilityClassAssert.assertThat(IntMatchers.class)
+                .isUtilityClass();
     }
 }

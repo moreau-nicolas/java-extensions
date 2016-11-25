@@ -1,8 +1,7 @@
 package com.github.moreaunicolas.util;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchThrowable;
-import static org.assertj.core.api.Assertions.entry;
+import com.github.moreaunicolas.test.UtilityClassAssert;
+import org.junit.Test;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -11,7 +10,7 @@ import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.function.BinaryOperator;
 import java.util.stream.Stream;
 
-import org.junit.Test;
+import static org.assertj.core.api.Assertions.*;
 
 public class ExtendedCollectorsTests {
 
@@ -169,5 +168,11 @@ public class ExtendedCollectorsTests {
                 .isExactlyInstanceOf(ConcurrentSkipListMap.class)
                 .containsOnly(ENTRY_2_DUPLICATE)
                 ;
+    }
+
+    @Test
+    public void isUtilityClass() throws NoSuchMethodException {
+        UtilityClassAssert.assertThat(ExtendedCollectors.class)
+                .isUtilityClass();
     }
 }

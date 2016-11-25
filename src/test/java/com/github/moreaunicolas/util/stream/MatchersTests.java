@@ -1,6 +1,8 @@
 package com.github.moreaunicolas.util.stream;
 
 import com.github.moreaunicolas.test.Enumerations;
+import com.github.moreaunicolas.test.UtilityClassAssert;
+import com.github.moreaunicolas.util.ExtendedArrays;
 import com.github.moreaunicolas.util.stream.Matchers.*;
 import com.google.common.collect.Iterators;
 import org.junit.Test;
@@ -92,5 +94,11 @@ public class MatchersTests {
         assertThat(noneMatchEqualToB.in(Arrays.asList(LETTERS))).isFalse();
         assertThat(noneMatchEqualToB.in(Iterators.forArray(LETTERS))).isFalse();
         assertThat(noneMatchEqualToB.in(Enumerations.forArray(LETTERS))).isFalse();
+    }
+
+    @Test
+    public void isUtilityClass() throws NoSuchMethodException {
+        UtilityClassAssert.assertThat(Matchers.class)
+                .isUtilityClass();
     }
 }
