@@ -48,6 +48,15 @@ public class EnumerationAsIteratorTests {
         assertThat(caught).isInstanceOf(NoSuchElementException.class);
     }
 
+    @Test
+    public void removeThrowsUnsupportedOperationException() {
+        EnumerationAsIterator<Object> iterator = new EnumerationAsIterator<>(singletonEnumeration());
+
+        Throwable caught = catchThrowable(iterator::remove);
+
+        assertThat(caught).isInstanceOf(UnsupportedOperationException.class);
+    }
+
     private static IteratorAsEnumeration<Object> singletonEnumeration() {
         return new IteratorAsEnumeration<>(singletonIterator("test"));
     }
