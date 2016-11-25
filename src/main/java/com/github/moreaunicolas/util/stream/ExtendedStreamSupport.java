@@ -23,4 +23,8 @@ public class ExtendedStreamSupport {
     public static <T> Stream<T> stream(Enumeration<T> enumeration) {
         return stream(new EnumerationAsIterator<>(enumeration));
     }
+
+    private ExtendedStreamSupport() {
+        throw new UnsupportedOperationException();
+    }
 }
