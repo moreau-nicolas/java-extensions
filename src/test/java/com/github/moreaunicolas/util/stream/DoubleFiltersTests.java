@@ -1,7 +1,6 @@
 package com.github.moreaunicolas.util.stream;
 
 import com.github.moreaunicolas.test.UtilityClassAssert;
-import com.github.moreaunicolas.util.ExtendedArrays;
 import com.github.moreaunicolas.util.stream.DoubleFilters.*;
 import org.junit.Test;
 
@@ -25,6 +24,7 @@ public class DoubleFiltersTests {
 
         assertThat(findAllMultiplesOf4.in(NUMBERS).boxed()).contains(20., 40.);
         assertThat(findAllMultiplesOf4.in(DoubleStream.of(NUMBERS)).boxed()).contains(20., 40.);
+        assertThat(findAllMultiplesOf4.in(DoubleStream.of(NUMBERS).iterator()).boxed()).contains(20., 40.);
     }
 
     @Test
@@ -33,6 +33,7 @@ public class DoubleFiltersTests {
 
         assertThat(findAllMultiplesOf4.in(NUMBERS).boxed()).isEmpty();
         assertThat(findAllMultiplesOf4.in(DoubleStream.of(NUMBERS)).boxed()).isEmpty();
+        assertThat(findAllMultiplesOf4.in(DoubleStream.of(NUMBERS).iterator()).boxed()).isEmpty();
     }
 
     @Test
@@ -41,6 +42,7 @@ public class DoubleFiltersTests {
 
         assertThat(findFirstMultipleOf4.in(NUMBERS)).hasValue(20);
         assertThat(findFirstMultipleOf4.in(DoubleStream.of(NUMBERS))).hasValue(20);
+        assertThat(findFirstMultipleOf4.in(DoubleStream.of(NUMBERS).iterator())).hasValue(20);
     }
 
     @Test
@@ -49,6 +51,7 @@ public class DoubleFiltersTests {
 
         assertThat(findFirstMultipleOf4.in(NUMBERS)).isEmpty();
         assertThat(findFirstMultipleOf4.in(DoubleStream.of(NUMBERS))).isEmpty();
+        assertThat(findFirstMultipleOf4.in(DoubleStream.of(NUMBERS).iterator())).isEmpty();
     }
 
     @Test
@@ -58,6 +61,7 @@ public class DoubleFiltersTests {
 
         assertThat(findAnyMultipleOf4.in(NUMBERS).getAsDouble()).isIn(20., 40.);
         assertThat(findAnyMultipleOf4.in(DoubleStream.of(NUMBERS)).getAsDouble()).isIn(20., 40.);
+        assertThat(findAnyMultipleOf4.in(DoubleStream.of(NUMBERS).iterator()).getAsDouble()).isIn(20., 40.);
     }
 
     @Test
@@ -66,6 +70,7 @@ public class DoubleFiltersTests {
 
         assertThat(findAnyMultipleOf4.in(NUMBERS)).isEmpty();
         assertThat(findAnyMultipleOf4.in(DoubleStream.of(NUMBERS))).isEmpty();
+        assertThat(findAnyMultipleOf4.in(DoubleStream.of(NUMBERS).iterator())).isEmpty();
     }
 
     @Test
@@ -73,6 +78,7 @@ public class DoubleFiltersTests {
 
         assertThat(minDouble().in(NUMBERS)).hasValue(10);
         assertThat(minDouble().in(DoubleStream.of(NUMBERS))).hasValue(10);
+        assertThat(minDouble().in(DoubleStream.of(NUMBERS).iterator())).hasValue(10);
     }
 
     @Test
@@ -80,6 +86,7 @@ public class DoubleFiltersTests {
 
         assertThat(maxDouble().in(NUMBERS)).hasValue(50);
         assertThat(maxDouble().in(DoubleStream.of(NUMBERS))).hasValue(50);
+        assertThat(maxDouble().in(DoubleStream.of(NUMBERS).iterator())).hasValue(50);
     }
 
     @Test

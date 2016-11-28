@@ -1,7 +1,6 @@
 package com.github.moreaunicolas.util.stream;
 
 import com.github.moreaunicolas.test.UtilityClassAssert;
-import com.github.moreaunicolas.util.ExtendedArrays;
 import com.github.moreaunicolas.util.stream.DoubleMatchers.DoubleMatchFunction;
 import org.junit.Test;
 
@@ -25,6 +24,7 @@ public class DoubleMatchersTests {
 
         assertThat(allMatchPositive.in(NUMBERS)).isTrue();
         assertThat(allMatchPositive.in(DoubleStream.of(NUMBERS))).isTrue();
+        assertThat(allMatchPositive.in(DoubleStream.of(NUMBERS).iterator())).isTrue();
     }
 
     @Test
@@ -33,6 +33,7 @@ public class DoubleMatchersTests {
 
         assertThat(allMatchMultipleOf4.in(NUMBERS)).isFalse();
         assertThat(allMatchMultipleOf4.in(DoubleStream.of(NUMBERS))).isFalse();
+        assertThat(allMatchMultipleOf4.in(DoubleStream.of(NUMBERS).iterator())).isFalse();
     }
 
     @Test
@@ -41,6 +42,7 @@ public class DoubleMatchersTests {
 
         assertThat(anyMatchMultipleOf4.in(NUMBERS)).isTrue();
         assertThat(anyMatchMultipleOf4.in(DoubleStream.of(NUMBERS))).isTrue();
+        assertThat(anyMatchMultipleOf4.in(DoubleStream.of(NUMBERS).iterator())).isTrue();
     }
 
     @Test
@@ -49,6 +51,7 @@ public class DoubleMatchersTests {
 
         assertThat(anyMatchNegative.in(NUMBERS)).isFalse();
         assertThat(anyMatchNegative.in(DoubleStream.of(NUMBERS))).isFalse();
+        assertThat(anyMatchNegative.in(DoubleStream.of(NUMBERS).iterator())).isFalse();
     }
 
     @Test
@@ -57,6 +60,7 @@ public class DoubleMatchersTests {
 
         assertThat(noneMatchNegative.in(NUMBERS)).isTrue();
         assertThat(noneMatchNegative.in(DoubleStream.of(NUMBERS))).isTrue();
+        assertThat(noneMatchNegative.in(DoubleStream.of(NUMBERS).iterator())).isTrue();
     }
 
     @Test
@@ -65,6 +69,7 @@ public class DoubleMatchersTests {
 
         assertThat(noneMatchMultipleOf4.in(NUMBERS)).isFalse();
         assertThat(noneMatchMultipleOf4.in(DoubleStream.of(NUMBERS))).isFalse();
+        assertThat(noneMatchMultipleOf4.in(DoubleStream.of(NUMBERS).iterator())).isFalse();
     }
 
     @Test

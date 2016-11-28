@@ -1,8 +1,11 @@
 package com.github.moreaunicolas.util.stream;
 
 import java.util.OptionalDouble;
+import java.util.PrimitiveIterator;
 import java.util.function.DoublePredicate;
 import java.util.stream.DoubleStream;
+
+import static com.github.moreaunicolas.util.stream.ExtendedStreamSupport.doubleStream;
 
 public final class DoubleFilters {
 
@@ -12,6 +15,10 @@ public final class DoubleFilters {
 
         default R in(double[] doubles) {
             return in(DoubleStream.of(doubles));
+        }
+
+        default R in(PrimitiveIterator.OfDouble iterator) {
+            return in(doubleStream(iterator));
         }
     }
 
