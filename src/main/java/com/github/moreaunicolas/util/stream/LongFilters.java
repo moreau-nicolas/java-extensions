@@ -1,8 +1,11 @@
 package com.github.moreaunicolas.util.stream;
 
 import java.util.OptionalLong;
+import java.util.PrimitiveIterator;
 import java.util.function.LongPredicate;
 import java.util.stream.LongStream;
+
+import static com.github.moreaunicolas.util.stream.ExtendedStreamSupport.longStream;
 
 public final class LongFilters {
 
@@ -12,6 +15,10 @@ public final class LongFilters {
 
         default R in(long[] longs) {
             return in(LongStream.of(longs));
+        }
+
+        default R in(PrimitiveIterator.OfLong iterator) {
+            return in(longStream(iterator));
         }
     }
 

@@ -1,7 +1,6 @@
 package com.github.moreaunicolas.util.stream;
 
 import com.github.moreaunicolas.test.UtilityClassAssert;
-import com.github.moreaunicolas.util.ExtendedArrays;
 import com.github.moreaunicolas.util.stream.LongMatchers.*;
 import org.junit.Test;
 
@@ -25,6 +24,7 @@ public class LongMatchersTests {
 
         assertThat(allMatchPositive.in(NUMBERS)).isTrue();
         assertThat(allMatchPositive.in(LongStream.of(NUMBERS))).isTrue();
+        assertThat(allMatchPositive.in(LongStream.of(NUMBERS).iterator())).isTrue();
     }
 
     @Test
@@ -33,6 +33,7 @@ public class LongMatchersTests {
 
         assertThat(allMatchMultipleOf4.in(NUMBERS)).isFalse();
         assertThat(allMatchMultipleOf4.in(LongStream.of(NUMBERS))).isFalse();
+        assertThat(allMatchMultipleOf4.in(LongStream.of(NUMBERS).iterator())).isFalse();
     }
 
     @Test
@@ -41,6 +42,7 @@ public class LongMatchersTests {
 
         assertThat(anyMatchMultipleOf4.in(NUMBERS)).isTrue();
         assertThat(anyMatchMultipleOf4.in(LongStream.of(NUMBERS))).isTrue();
+        assertThat(anyMatchMultipleOf4.in(LongStream.of(NUMBERS).iterator())).isTrue();
     }
 
     @Test
@@ -49,6 +51,7 @@ public class LongMatchersTests {
 
         assertThat(anyMatchNegative.in(NUMBERS)).isFalse();
         assertThat(anyMatchNegative.in(LongStream.of(NUMBERS))).isFalse();
+        assertThat(anyMatchNegative.in(LongStream.of(NUMBERS).iterator())).isFalse();
     }
 
     @Test
@@ -57,6 +60,7 @@ public class LongMatchersTests {
 
         assertThat(noneMatchNegative.in(NUMBERS)).isTrue();
         assertThat(noneMatchNegative.in(LongStream.of(NUMBERS))).isTrue();
+        assertThat(noneMatchNegative.in(LongStream.of(NUMBERS).iterator())).isTrue();
     }
 
     @Test
@@ -65,6 +69,7 @@ public class LongMatchersTests {
 
         assertThat(noneMatchMultipleOf4.in(NUMBERS)).isFalse();
         assertThat(noneMatchMultipleOf4.in(LongStream.of(NUMBERS))).isFalse();
+        assertThat(noneMatchMultipleOf4.in(LongStream.of(NUMBERS).iterator())).isFalse();
     }
 
     @Test

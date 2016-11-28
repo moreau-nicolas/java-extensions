@@ -1,7 +1,6 @@
 package com.github.moreaunicolas.util.stream;
 
 import com.github.moreaunicolas.test.UtilityClassAssert;
-import com.github.moreaunicolas.util.ExtendedArrays;
 import org.junit.Test;
 
 import java.util.OptionalLong;
@@ -24,6 +23,7 @@ public class LongFiltersTests {
 
         assertThat(findAllMultiplesOf4.in(NUMBERS).boxed()).contains(20L, 40L);
         assertThat(findAllMultiplesOf4.in(LongStream.of(NUMBERS)).boxed()).contains(20L, 40L);
+        assertThat(findAllMultiplesOf4.in(LongStream.of(NUMBERS)).boxed()).contains(20L, 40L);
     }
 
     @Test
@@ -31,6 +31,7 @@ public class LongFiltersTests {
         LongSearchFunction<LongStream> findAllMultiplesOf4 = findAll(IS_NEGATIVE);
 
         assertThat(findAllMultiplesOf4.in(NUMBERS).boxed()).isEmpty();
+        assertThat(findAllMultiplesOf4.in(LongStream.of(NUMBERS)).boxed()).isEmpty();
         assertThat(findAllMultiplesOf4.in(LongStream.of(NUMBERS)).boxed()).isEmpty();
     }
 
@@ -40,6 +41,7 @@ public class LongFiltersTests {
 
         assertThat(findFirstMultipleOf4.in(NUMBERS)).hasValue(20);
         assertThat(findFirstMultipleOf4.in(LongStream.of(NUMBERS))).hasValue(20);
+        assertThat(findFirstMultipleOf4.in(LongStream.of(NUMBERS).iterator())).hasValue(20);
     }
 
     @Test
@@ -48,6 +50,7 @@ public class LongFiltersTests {
 
         assertThat(findFirstMultipleOf4.in(NUMBERS)).isEmpty();
         assertThat(findFirstMultipleOf4.in(LongStream.of(NUMBERS))).isEmpty();
+        assertThat(findFirstMultipleOf4.in(LongStream.of(NUMBERS).iterator())).isEmpty();
     }
 
     @Test
@@ -57,6 +60,7 @@ public class LongFiltersTests {
 
         assertThat(findAnyMultipleOf4.in(NUMBERS).getAsLong()).isIn(20L, 40L);
         assertThat(findAnyMultipleOf4.in(LongStream.of(NUMBERS)).getAsLong()).isIn(20L, 40L);
+        assertThat(findAnyMultipleOf4.in(LongStream.of(NUMBERS).iterator()).getAsLong()).isIn(20L, 40L);
     }
 
     @Test
@@ -65,6 +69,7 @@ public class LongFiltersTests {
 
         assertThat(findAnyMultipleOf4.in(NUMBERS)).isEmpty();
         assertThat(findAnyMultipleOf4.in(LongStream.of(NUMBERS))).isEmpty();
+        assertThat(findAnyMultipleOf4.in(LongStream.of(NUMBERS).iterator())).isEmpty();
     }
 
     @Test
@@ -72,6 +77,7 @@ public class LongFiltersTests {
 
         assertThat(minLong().in(NUMBERS)).hasValue(10);
         assertThat(minLong().in(LongStream.of(NUMBERS))).hasValue(10);
+        assertThat(minLong().in(LongStream.of(NUMBERS).iterator())).hasValue(10);
     }
 
     @Test
@@ -79,6 +85,7 @@ public class LongFiltersTests {
 
         assertThat(maxLong().in(NUMBERS)).hasValue(50);
         assertThat(maxLong().in(LongStream.of(NUMBERS))).hasValue(50);
+        assertThat(maxLong().in(LongStream.of(NUMBERS).iterator())).hasValue(50);
     }
 
     @Test

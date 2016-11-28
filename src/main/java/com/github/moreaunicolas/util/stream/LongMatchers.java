@@ -1,7 +1,10 @@
 package com.github.moreaunicolas.util.stream;
 
+import java.util.PrimitiveIterator;
 import java.util.function.LongPredicate;
 import java.util.stream.LongStream;
+
+import static com.github.moreaunicolas.util.stream.ExtendedStreamSupport.longStream;
 
 public final class LongMatchers {
 
@@ -11,6 +14,10 @@ public final class LongMatchers {
 
         default boolean in(long[] longs) {
             return in(LongStream.of(longs));
+        }
+
+        default boolean in(PrimitiveIterator.OfLong iterator) {
+            return in(longStream(iterator));
         }
     }
 
