@@ -1,7 +1,11 @@
 package com.github.moreaunicolas.util.stream;
 
+
+import java.util.PrimitiveIterator;
 import java.util.function.IntPredicate;
 import java.util.stream.IntStream;
+
+import static com.github.moreaunicolas.util.stream.ExtendedStreamSupport.intStream;
 
 public final class IntCounters {
 
@@ -11,6 +15,10 @@ public final class IntCounters {
 
         default long in(int[] ints) {
             return in(IntStream.of(ints));
+        }
+
+        default long in(PrimitiveIterator.OfInt iterator) {
+            return in(intStream(iterator));
         }
     }
 

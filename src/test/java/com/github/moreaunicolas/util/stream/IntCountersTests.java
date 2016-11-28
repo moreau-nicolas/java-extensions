@@ -1,7 +1,6 @@
 package com.github.moreaunicolas.util.stream;
 
 import com.github.moreaunicolas.test.UtilityClassAssert;
-import com.github.moreaunicolas.util.ExtendedArrays;
 import com.github.moreaunicolas.util.stream.IntCounters.IntCountFunction;
 import org.junit.Test;
 
@@ -24,6 +23,7 @@ public class IntCountersTests {
 
         assertThat(countMultiplesOf4.in(NUMBERS)).isEqualTo(2);
         assertThat(countMultiplesOf4.in(IntStream.of(NUMBERS))).isEqualTo(2);
+        assertThat(countMultiplesOf4.in(IntStream.of(NUMBERS).iterator())).isEqualTo(2);
     }
 
     @Test
@@ -32,6 +32,7 @@ public class IntCountersTests {
 
         assertThat(countNegatives.in(NUMBERS)).isEqualTo(0);
         assertThat(countNegatives.in(IntStream.of(NUMBERS))).isEqualTo(0);
+        assertThat(countNegatives.in(IntStream.of(NUMBERS).iterator())).isEqualTo(0);
     }
 
     @Test

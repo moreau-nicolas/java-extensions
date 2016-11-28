@@ -1,8 +1,12 @@
 package com.github.moreaunicolas.util.stream;
 
+
 import java.util.OptionalInt;
+import java.util.PrimitiveIterator;
 import java.util.function.IntPredicate;
 import java.util.stream.IntStream;
+
+import static com.github.moreaunicolas.util.stream.ExtendedStreamSupport.intStream;
 
 public final class IntFilters {
 
@@ -12,6 +16,10 @@ public final class IntFilters {
 
         default R in(int[] ints) {
             return in(IntStream.of(ints));
+        }
+
+        default R in(PrimitiveIterator.OfInt iterator) {
+            return in(intStream(iterator));
         }
     }
 
