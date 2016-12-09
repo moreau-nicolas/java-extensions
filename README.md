@@ -251,6 +251,8 @@ import static com.github.moreaunicolas.util.stream.Counters.count;
 import static com.github.moreaunicolas.util.stream.ExtendedStreamSupport.stream;
 import static com.github.moreaunicolas.util.stream.Filters.*;
 import static com.github.moreaunicolas.util.stream.Matchers.*;
+import static com.github.moreaunicolas.util.stream.Reducers.average;
+import static com.github.moreaunicolas.util.stream.Reducers.sum;
 import static java.util.Comparator.comparing;
 
 public class UniformInterfaceExamples {
@@ -316,6 +318,20 @@ public class UniformInterfaceExamples {
         numberOfMoviesStartingWithA = count(startsWithA).in(movieIterable.iterator());
         numberOfMoviesStartingWithA = count(startsWithA).in(stream(movieIterable));
         numberOfMoviesStartingWithA = count(startsWithA).in(Enumerations.forArray(movieArray));
+
+        int sumOfMovieLengths;
+        sumOfMovieLengths = sum(String::length).in(movieArray);
+        sumOfMovieLengths = sum(String::length).in(movieIterable);
+        sumOfMovieLengths = sum(String::length).in(movieIterable.iterator());
+        sumOfMovieLengths = sum(String::length).in(stream(movieIterable));
+        sumOfMovieLengths = sum(String::length).in(Enumerations.forArray(movieArray));
+        
+        double averageOfMovieLengths;
+        averageOfMovieLengths = average(String::length).in(movieArray);
+        averageOfMovieLengths = average(String::length).in(movieIterable);
+        averageOfMovieLengths = average(String::length).in(movieIterable.iterator());
+        averageOfMovieLengths = average(String::length).in(stream(movieIterable));
+        averageOfMovieLengths = average(String::length).in(Enumerations.forArray(movieArray));
     }
 }
 ```
