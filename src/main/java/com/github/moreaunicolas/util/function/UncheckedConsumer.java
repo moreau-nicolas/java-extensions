@@ -6,11 +6,6 @@ import java.util.function.Consumer;
 
 public final class UncheckedConsumer {
 
-    @FunctionalInterface
-    interface CheckedConsumer<T> {
-        void accept(T parameter) throws Exception;
-    }
-
     public static <T> Consumer<T> from(CheckedConsumer<T> consumer) {
         return parameter -> {
             try {

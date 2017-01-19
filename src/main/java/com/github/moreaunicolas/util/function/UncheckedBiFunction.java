@@ -6,11 +6,6 @@ import java.util.function.BiFunction;
 
 public final class UncheckedBiFunction {
 
-    @FunctionalInterface
-    interface CheckedBiFunction<T, U, R> {
-        R apply(T first, U second) throws Exception;
-    }
-
     public static <T, U, R> BiFunction<T, U, R> from(CheckedBiFunction<T, U, R> biFunction) {
         return (first, second) -> {
             try {

@@ -6,11 +6,6 @@ import java.util.function.Supplier;
 
 public final class UncheckedSupplier {
 
-    @FunctionalInterface
-    interface CheckedSupplier<T> {
-        T get() throws Exception;
-    }
-
     public static <T> Supplier<T> from(CheckedSupplier<T> supplier) {
         return () -> {
             try {

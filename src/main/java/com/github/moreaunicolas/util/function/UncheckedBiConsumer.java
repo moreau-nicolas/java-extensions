@@ -6,11 +6,6 @@ import java.util.function.BiConsumer;
 
 public final class UncheckedBiConsumer {
 
-    @FunctionalInterface
-    interface CheckedBiConsumer<T, U> {
-        void accept(T first, U second) throws Exception;
-    }
-
     public static <T, U> BiConsumer<T, U> from(CheckedBiConsumer<T, U> biConsumer) {
         return (first, second) -> {
             try {

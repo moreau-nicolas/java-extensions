@@ -6,11 +6,6 @@ import java.util.function.BiPredicate;
 
 public final class UncheckedBiPredicate {
 
-    @FunctionalInterface
-    interface CheckedBiPredicate<T, U> {
-        boolean test(T first, U second) throws Exception;
-    }
-
     public static <T, U> BiPredicate<T, U> from(CheckedBiPredicate<T, U> biPredicate) {
         return (first, second) -> {
             try {

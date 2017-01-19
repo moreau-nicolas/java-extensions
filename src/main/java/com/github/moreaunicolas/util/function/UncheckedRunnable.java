@@ -5,11 +5,6 @@ import java.io.UncheckedIOException;
 
 public final class UncheckedRunnable {
 
-    @FunctionalInterface
-    interface CheckedRunnable {
-        void run() throws Exception;
-    }
-
     public static Runnable from(CheckedRunnable runnable) {
         return () -> {
             try {

@@ -6,11 +6,6 @@ import java.util.function.Predicate;
 
 public final class UncheckedPredicate {
 
-    @FunctionalInterface
-    interface CheckedPredicate<T> {
-        boolean test(T parameter) throws Exception;
-    }
-
     public static <T> Predicate<T> from(CheckedPredicate<T> predicate) {
         return parameter -> {
             try {
