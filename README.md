@@ -345,7 +345,7 @@ public class UniformInterfaceExamples {
 
 > Note: because of some Java generics limitations, it might be necessary to store the
  filtering / counting / matching `Predicate` in a **local variable** (or perform a *cast*).
- Storing the predicate in a variable isn't necessary a bad thing because it can help better express the developer's
+ Storing the predicate in a variable isn't necessarily a bad thing because it can help better express the developer's
  intent by giving a name to the `Predicate`.
 
 > Example: if `message` is of type `String`, `message::equals` is of type `Predicate<Object>` and
