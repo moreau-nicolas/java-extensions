@@ -263,6 +263,13 @@ public class UniformInterfaceExamples {
         String[] movieArray = {"a beautiful mind", "american history X", "american psycho", "gladiator", "titanic" };
         Iterable<String> movieIterable = Arrays.asList(movieArray);
 
+        Optional<String> firstMovieStartingWithA;
+        firstMovieStartingWithA = findFirst(startsWithA).in(movieArray);
+        firstMovieStartingWithA = findFirst(startsWithA).in(movieIterable);
+        firstMovieStartingWithA = findFirst(startsWithA).in(movieIterable.iterator());
+        firstMovieStartingWithA = findFirst(startsWithA).in(stream(movieIterable));
+        firstMovieStartingWithA = findFirst(startsWithA).in(Enumerations.forArray(movieArray));
+
         Optional<String> anyMovieStartingWithA;
         anyMovieStartingWithA = findAny(startsWithA).in(movieArray);
         anyMovieStartingWithA = findAny(startsWithA).in(movieIterable);
