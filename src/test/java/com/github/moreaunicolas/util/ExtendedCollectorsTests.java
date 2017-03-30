@@ -171,6 +171,50 @@ public class ExtendedCollectorsTests {
     }
 
     @Test
+    public void joining() {
+        Stream<Integer> numbers = Stream.of(0, 1, 2, 3, 4, 5, 6, 7 , 8, 9);
+
+        String actual = numbers
+                .collect(ExtendedCollectors.joining());
+
+        assertThat(actual)
+                .isEqualTo("0123456789");
+    }
+
+    @Test
+    public void joining_null() {
+        Stream<Integer> numbers = Stream.of(0, 1, 2, null, 4, 5);
+
+        String actual = numbers
+                .collect(ExtendedCollectors.joining());
+
+        assertThat(actual)
+                .isEqualTo("012null45");
+    }
+
+    @Test
+    public void joining_withDelimiter() {
+        Stream<Integer> fibonacciNumbers = Stream.of(0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55);
+
+        String actual = fibonacciNumbers
+                .collect(ExtendedCollectors.joining(", "));
+
+        assertThat(actual)
+                .isEqualTo("0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55");
+    }
+
+    @Test
+    public void joining_withDelimiterAndPrefixAndSuffix() {
+        Stream<Integer> empty = Stream.empty();
+
+        String actual = empty
+                .collect(ExtendedCollectors.joining("not important", "[", "...]"));
+
+        assertThat(actual)
+                .isEqualTo("[...]");
+    }
+
+    @Test
     public void isUtilityClass() throws NoSuchMethodException {
         UtilityClassAssert.assertThat(ExtendedCollectors.class)
                 .isUtilityClass();

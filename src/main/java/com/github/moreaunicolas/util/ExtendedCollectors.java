@@ -1,10 +1,15 @@
 package com.github.moreaunicolas.util;
 
+import static java.util.Collections.emptySet;
 import static java.util.Map.Entry;
 
 import java.util.Map;
+import java.util.Set;
+import java.util.StringJoiner;
 import java.util.concurrent.ConcurrentMap;
+import java.util.function.BiConsumer;
 import java.util.function.BinaryOperator;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -53,6 +58,45 @@ public final class ExtendedCollectors {
 
     private static <T> BinaryOperator<T> throwingMerger() {
         return (u, v) -> { throw new IllegalStateException(String.format("Duplicate key %s", u)); };
+    }
+
+    public static <E> Collector<E, StringJoiner, String> joining() {
+        return joining("", "", "");
+    }
+
+    public static <E> Collector<E, StringJoiner, String> joining(String delimiter) {
+        return joining(delimiter, "", "");
+    }
+
+    public static <E> Collector<E, StringJoiner, String> joining(String delimiter, String prefix, String suffix) {
+        return new Collector<E, StringJoiner, String>() {
+            @Override
+            public Supplier<StringJoiner> supplier() {
+                return () -> new StringJoiner(delimiter, prefix, suffix);
+            }
+
+            @Override
+            public BiConsumer<StringJoiner, E> accumulator() {
+                return (accumulator, element) -> accumulator.add(
+                        element != null ? element.toString() : null
+                );
+            }
+
+            @Override
+            public BinaryOperator<StringJoiner> combiner() {
+                return StringJoiner::merge;
+            }
+
+            @Override
+            public Function<StringJoiner, String> finisher() {
+                return StringJoiner::toString;
+            }
+
+            @Override
+            public Set<Characteristics> characteristics() {
+                return emptySet();
+            }
+        };
     }
 
     private ExtendedCollectors() {
