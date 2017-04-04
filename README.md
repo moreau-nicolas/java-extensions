@@ -1,5 +1,7 @@
 # java-extensions
-[![Build Status](https://travis-ci.org/moreau-nicolas/java-extensions.svg?branch=master)](https://travis-ci.org/moreau-nicolas/java-extensions) [![Coverage Status](https://coveralls.io/repos/github/moreau-nicolas/java-extensions/badge.svg?branch=master)](https://coveralls.io/github/moreau-nicolas/java-extensions?branch=master)
+
+[![Build Status][build-status-icon]][build-status-url]
+[![Coverage Status][coverage-status-icon]][coverage-status-url]
 
 A collection of helpful utility classes for Java 8 and above.
 
@@ -364,3 +366,9 @@ Please refer to the unit tests for more concrete examples.
 Production code depends only on JDK 8 or above.
 
 Test code uses JUnit, AssertJ and Guava.
+
+[build-status-icon]: https://travis-ci.org/moreau-nicolas/java-extensions.svg?branch=master
+[build-status-url]: https://travis-ci.org/moreau-nicolas/java-extensions
+
+[coverage-status-icon]: https://coveralls.io/repos/github/moreau-nicolas/java-extensions/badge.svg?branch=master
+[coverage-status-url]: https://coveralls.io/github/moreau-nicolas/java-extensions?branch=master
