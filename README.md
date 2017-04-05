@@ -10,7 +10,7 @@ A collection of helpful utility classes for Java 8 and above.
 - Smoother `Predicate` and `BiPredicate` interaction with method references
 - Simpler `Set` creation
 - Safe and lambda-friendly `Exception` wrapping
-- Reduce boilerplate when creating `Stream` instances
+- Reduce boilerplate
 - Uniform intention-revealing interface to manipulate non-scalar values
  (array, `Stream`, `Iterable`, `Iterator`, `Enumeration`)
 
@@ -200,11 +200,13 @@ public class ExceptionWrappingExample {
 }
 ```
 
-### 4. Reduce boilerplate when creating `Stream` instances
+### 4. Reduce boilerplate
+ 
+#### 4.1. Creating `Stream` instances
 
 The `StreamSupport` class provides a few methods to help create `Stream` instances from `Iterator`s and `Spliterator`s.
 
-The library provides en `ExtendedStreamSupport` class which adds a few other methods with the same intent and fewer
+The library provides an `ExtendedStreamSupport` class which adds a few other methods with the same intent and fewer
 parameters:
 - `Stream<T> stream(Iterable<T> objects)`
 - `Stream<T> stream(Iterator<T> iterator)`
@@ -214,6 +216,28 @@ Creating a primitive type stream from a primitive iterator is also supported:
 - `DoubleStream doubleStream(PrimitiveIterator.OfDouble iterator)`
 - `LongStream longStream(PrimitiveIterator.OfLong iterator)`
 - `IntStream intStream(PrimitiveIterator.OfInt iterator)`
+
+#### 4.2. Creating `Collector` instances
+
+The `Collectors` class provides a few methods to help create `Collector` instances.
+
+The library provides an `ExtendedCollectors` class which adds a few other methods with the same intent and fewer
+parameters:
+- `Collector<...> toMap()`
+- `Collector<...> toMap(BinaryOperator<V> mergeFunction)`
+- `Collector<...> toMap(BinaryOperator<V> mergeFunction, Supplier<M> mapSupplier)`
+- `Collector<...> toMap(Supplier<M> mapSupplier)`
+- `Collector<...> toConcurrentMap()`
+- `Collector<...> toConcurrentMap(BinaryOperator<V> mergeFunction)`
+- `Collector<...> toConcurrentMap(BinaryOperator<V> mergeFunction, Supplier<M> mapSupplier)`
+- `Collector<...> toConcurrentMap(Supplier<M> mapSupplier)`
+- `Collector<...> joining()`
+- `Collector<...> joining(String delimiter)`
+- `Collector<...> joining(String delimiter, String prefix, String suffix)`
+
+The `toMap()` and `toConcurrentMap()` methods use `Map.Entry::getKey` and `Map.Entry::getValue` as mapping functions.
+The `joining()` method enables one to join the string representations of objects in a `Stream` without explicitly making
+a call to `.map(Object::toString)` first.
 
 ### 5. Uniform intention-revealing interface to manipulate non-scalar values
 
